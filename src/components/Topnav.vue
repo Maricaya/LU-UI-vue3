@@ -6,6 +6,7 @@
 				<li>菜单1</li>
 				<li>菜单2</li>
 			</ul>
+			<span class="toggleAside"></span>
 		</div>
 	</div>
 </template>
@@ -18,9 +19,9 @@
     setup() {
       const asideVisible = inject<Ref<boolean>>("asideVisible");
       const toggleMenu = () => {
-        asideVisible.value = !asideVisible.value
+        asideVisible.value = !asideVisible.value;
       };
-	    return {toggleMenu}
+      return {toggleMenu};
     }
   };
 </script>
@@ -32,16 +33,37 @@
 		padding: 16px;
 		position: relative;
 		z-index: 10;
+
 		> .logo {
 			max-width: 6em;
 			margin-right: auto;
 		}
+
 		> .menu {
 			display: flex;
 			white-space: nowrap;
 			flex-wrap: nowrap;
+
 			> li {
 				margin: 0 1em;
+			}
+		}
+		> .toggleAside {
+			display: inline-block;
+			width: 24px;
+			height: 24px;
+			background: red;
+			position: absolute;
+			left: 16px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		@media (max-width: 500px) {
+			> .menu {
+				display: none;
+			}
+			> .logo {
+				margin: 0 auto;
 			}
 		}
 	}
