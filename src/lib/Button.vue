@@ -1,13 +1,17 @@
 <template>
-	<button @click="toggle" :class="{checked}">
-		<slot />
-	</button>
+	<div :size="size">
+		<button v-bind="rest">
+			<slot />
+		</button>
+	</div>
 </template>
 
 <script lang="ts">
   export default {
-    setup() {
-    
+    inheritAttrs: false,
+    setup(props, context) {
+      const {size, ...rest} = context;
+	    return {size, rest}
     }
   };
 </script>

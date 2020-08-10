@@ -1,15 +1,21 @@
 <template>
 	<div>
-		<Button>你好</Button>
+		<Button @click="onClick" size="small">你好</Button>
 	</div>
 </template>
 
 <script>
   import Button from "../lib/Button.vue";
-
+	
   export default {
     name: "ButtonDemo",
-    components: {Button}
+    components: {Button},
+    setup () {
+      const onClick = () => {
+        console.log('onClick')
+      }
+      return {onClick}
+    }
   }
 </script>
 
