@@ -1,61 +1,71 @@
 <template>
-	<button @click="toggle" :class="{checked}">
+	<button @click="toggle" :class="{'lu-checked': value}">
 		<span></span>
 	</button>
 </template>
 
 <script lang="ts">
-  import {ref} from "vue";
-
   export default {
-    setup() {
-      const checked = ref(false);
+    props: {
+      value: Boolean,
+    },
+    setup(props, context) {
       const toggle = () => {
-        checked.value = !checked.value;
+        context.emit("update:value", !props.value);
       };
-      return {checked, toggle};
+      return {toggle};
     }
   };
 </script>
 
-<style lang="scss" scoped>
-	$h: 22px;
-	$h2: $h - 4px;
-	button {
+<style lang="scss">
+	$h: 32px;
+	$border-color: #d9d9d9;
+	$color: #333;
+	$blue: #40a9ff;
+	$radius: 4px;
+	.lu-button {
+		box-sizing: border-box;
 		height: $h;
-		width: $h*2;
-		border: none;
-		background: #bfbfbf;
-		border-radius: $h/2;
-		position: relative;
-		> span {
-			position: absolute;
-			top: 2px;
-			left: 2px;
-			height: $h2;
-			width: $h2;
-			background: #fff;
-			border-radius: $h2/2;
-			transition: all 250ms
+		padding: 0 12px;
+		cursor: pointer;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		white-space: nowrap;
+		background: white;
+		color: $color;
+		border: 1px solid $border-color;
+		border-radius: $radius;
+		box-shadow: 0 1px 0 fade-out(black, 0.95);
+		& + & {
+			margin-left: 8px;
 		}
-		&.checked {
-			background: #1890ff;
-			> span {
-				left: calc(100% - #{$h2} - 2px);
-			}
+		&:hover,
+		&:focus {
+			color: $blue;
+			border-color: $blue;
 		}
 		&:focus {
 			outline: none;
 		}
-		&:active {
-			> span {
-				width: $h2 + 4px;
+		&::-moz-focus-inner {
+			border: 0;
+		}
+		&.lu-theme-link{
+			border-color: transparent;
+			box-shadow: none;
+			color: $blue;
+			&:hover,&:focus{
+				color: lighten($blue, 10%);
 			}
 		}
-		&.checked:active {
-			> span {
-				width: $h2+4px;
-				margin-left: -4px;
+		&.lu-theme-text{
+			border-color: transparent;
+			box-shadow: none;
+			color: inherit;
+			&:hover,&:focus{
+				background: darken(white, 5%);;
 			}
 		}
 	}
