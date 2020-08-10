@@ -1,5 +1,5 @@
 <template>
-	<button class="lu-button" :class="classes">
+	<button class="lu-button" :class="classes" :disabled="disabled">
 		<span v-if="loading" class="lu-loadingIndicator"></span>
 		<slot/>
 	</button>
