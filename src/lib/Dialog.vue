@@ -1,16 +1,19 @@
 <template>
 	<template v-if="visible">
-		<div class="lu-dialog-overlay"></div>
+		<div class="lu-dialog-overlay" @click="onClickOverlay"></div>
 		<div class="lu-dialog-wrapper">
 			<div class="lu-dialog">
-				<header>标题</header>
+				<header>
+					标题
+					<span @click="close" class="lu-dialog-close"></span>
+				</header>
 				<main>
 					<p>第一行字</p>
 					<p>第二行字</p>
 				</main>
 				<footer>
-					<Button>OK</Button>
-					<Button>Cancel</Button>
+					<Button @click="ok">OK</Button>
+					<Button @click="cancel">Cancel</Button>
 				</footer>
 			</div>
 		</div>
@@ -22,11 +25,49 @@
 	
   export default {
     props: {
-      visible: Boolean
+      visible: {
+        type: Boolean,
+	      default: false
+      },
+	    closeOnClickOverlay: {
+        type: Boolean,
+		    default: true
+	    },
+	    ok: {
+        type: Function
+	    },
+	    cancel: {
+        type: Function
+	    }
     },
 	  components: {
       Button
-	  }
+	  },
+    setup: function (props, context) {
+      const close = () => {
+        context.emit("update:visible", false);
+      };
+      const onClickOverlay = () => {
+        if (props.closeOnClickOverlay) {
+          close();
+        }
+      };
+      const ok = () => {
+        if (props.ok?.() !== false) {
+          close();
+        }
+        context.emit("ok");
+      };
+      const cancel = () => {
+        if (props.cancel?.() !== false) {
+          close();
+        }
+        context.emit("cancel");
+      };
+      return {
+        close, onClickOverlay, ok, cancel
+      };
+    }
   }
 </script>
 

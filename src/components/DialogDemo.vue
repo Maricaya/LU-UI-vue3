@@ -2,7 +2,7 @@
 		<div>dialog 示例</div>
 		<h1>示例 1</h1>
 		<Button @click="toggle">toggle</Button>
-		<Dialog :visible="x"></Dialog>
+		<Dialog v-model:visible="x" :close-on-click-overlay="false" :ok="f1" :cancel="f2"></Dialog>
 </template>
 
 <script>
@@ -16,10 +16,19 @@
 	  },
 	  setup () {
 	    const x = ref(false)
+      const f1 = () => {
+	      console.log('1')
+	      return false
+      };
+      const f2 = () => {
+        console.log('2')
+	      return true
+      };
 		  const toggle = () => {x.value = !x.value}
 		  return {
 	      x,
-			  toggle
+			  toggle,
+			  f1, f2
 		  }
 	  }
   }
