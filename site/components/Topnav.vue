@@ -26,7 +26,7 @@
 
 <style lang="scss" scoped>
 	.topnav {
-		background: pink;
+		box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
 		display: flex;
 		padding: 16px;
 		position: fixed;
@@ -53,10 +53,9 @@
 		}
 
 		> .toggleAside {
-			display: none;
+			background: red;
 			width: 24px;
 			height: 24px;
-			background: red;
 			position: absolute;
 			left: 16px;
 			top: 50%;

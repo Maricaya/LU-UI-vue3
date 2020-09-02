@@ -1,10 +1,10 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from './views/Home.vue';
 import Doc from './views/Doc.vue';
-import SwitchDemo from './components/SwitchDemo.vue';
-import ButtonDemo from './components/ButtonDemo.vue';
-import DialogDemo from './components/DialogDemo.vue';
-import TabsDemo from './components/TabsDemo.vue';
+import SwitchDemo from './Demos/SwitchDemo.vue';
+import ButtonDemo from './Demos/ButtonDemo.vue';
+import DialogDemo from './Demos/DialogDemo.vue';
+import TabsDemo from './Demos/TabsDemo.vue';
 // 内存型路由、hash 路由、history 路由
 const history = createWebHashHistory();
 export const router = createRouter({

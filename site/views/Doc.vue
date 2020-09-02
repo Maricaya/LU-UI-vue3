@@ -68,7 +68,6 @@
 		}
 	}
 	aside {
-		background: lightblue;
 		width: 150px;
 		position: fixed;
 		top: 0;
