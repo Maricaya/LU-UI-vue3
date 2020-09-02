@@ -2,8 +2,9 @@
 <div class="lu-tabs">
 	<div class="lu-tabs-nav">
 		<div class="lu-tabs-nav-item" @click="select(t)" :class="{selected: t === selected}"
-		     v-for="(t, index) in titles" :key="index">{{t}}</div>
-		<div class="lu-tabs-nav-indicator"></div>
+		     v-for="(t, index) in titles" :key="index" :ref="el => {if (el) navItems[index] = el }"
+		>{{t}}</div>
+		<div class="lu-tabs-nav-indicator" ref="indicator"></div>
 	</div>
 	<div class="lu-tabs-content">
 		<component class="lu-tabs-content-item" :is="current" :key="current" />
@@ -13,7 +14,7 @@
 
 <script lang="ts">
   import Tab from './Tab.vue'
-  import {computed} from 'vue'
+  import {computed, ref, onMounted} from 'vue'
 
   export default {
     name: "Tabs",
@@ -23,8 +24,15 @@
       }
 	  },
 	  setup (props, context) {
+      const navItems = ref<HTMLDivElement[]>([])
+		  const indicator = ref<HTMLDivElement>(null)
+		  onMounted(() => {
+		    const divs = navItems.value
+			  const result = divs.filter(div => div.classList.contains('selected'))[0]
+			  const {width} = result.getBoundingClientRect()
+			  indicator.value.style.width = width + 'px'
+      })
       const defaults = context.slots.default()
-		  console.log('defaults', defaults)
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
           throw new Error('Tabs 子标签必须是 Tab')
@@ -43,6 +51,8 @@
         defaults,
 			  titles,
 			  current,
+        navItems,
+        indicator,
         select
 		  }
 	  }
@@ -58,6 +68,7 @@
 			display: flex;
 			color: $color;
 			border-bottom: 1px solid $border-color;
+			position: relative;
 			&-item {
 				padding: 8px 0;
 				margin: 0 16px;
@@ -68,6 +79,14 @@
 				&.selected {
 					color: $blue;
 				}
+			}
+			&-indicator {
+				position: absolute;
+				height: 3px;
+				background: $blue;
+				left: 0;
+				bottom: -1px;
+				width: 100px;
 			}
 		}
 		&-content {
