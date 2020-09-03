@@ -1,20 +1,19 @@
 <template>
 <div class="lu-tabs">
 	<div class="lu-tabs-nav" ref="container">
-		<div class="lu-tabs-nav-item" @click="select(t)" :class="{selected: t === selected}"
-		     v-for="(t, index) in titles" :key="index" :ref="el => {if (t === selected) selectItem = el }"
+		<div class="lu-tabs-nav-item" @click="select(t)" :class="{selected: t === selected}" v-for="(t, index) in titles" :key="index" :ref="el => {if (t === selected) selectItem = el }"
 		>{{t}}</div>
 		<div class="lu-tabs-nav-indicator" ref="indicator"></div>
 	</div>
 	<div class="lu-tabs-content">
-		<component class="lu-tabs-content-item" :is="current" :key="current" />
+		<component class="lu-tabs-content-item" :is="current" :key="selected" />
 	</div>
 </div>
 </template>
 
 <script lang="ts">
   import Tab from './Tab.vue'
-  import {computed, ref, watchEffect} from 'vue'
+  import {computed, ref, watchEffect, onMounted} from 'vue'
 
   export default {
     name: "Tabs",
@@ -27,13 +26,15 @@
 		  const selectItem = ref<HTMLDivElement>(null)
       const indicator = ref<HTMLDivElement>(null)
       const container = ref<HTMLDivElement>(null)
-		  watchEffect(() => {
-        const {width} = selectItem.value.getBoundingClientRect()
-        indicator.value.style.width = width + 'px'
-        const {left: left1} = container.value.getBoundingClientRect()
-        const {left: left2 } = selectItem.value.getBoundingClientRect()
-        indicator.value.style.left = left2 - left1 + 'px'
-		  })
+			onMounted(() => {
+        watchEffect(() => {
+          const {width} = selectItem.value.getBoundingClientRect()
+          indicator.value.style.width = width + 'px'
+          const {left: left1} = container.value.getBoundingClientRect()
+          const {left: left2 } = selectItem.value.getBoundingClientRect()
+          indicator.value.style.left = left2 - left1 + 'px'
+        })
+			})
       const defaults = context.slots.default()
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
@@ -41,9 +42,7 @@
         }
       })
 		  const current = computed(() =>
-        defaults.filter(tag =>
-          tag.props.title === props.selected
-        )[0]
+        defaults.filter(tag => tag.props.title === props.selected)[0]
 		  )
       const titles = defaults.map(tag => tag.props.title)
 		  const select = (title: string) => {

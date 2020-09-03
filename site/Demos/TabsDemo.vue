@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-  import Tab from '../../src/lib/Tab.vue'
-  import Tabs from '../../src/lib/Tabs.vue'
+  import Tab from '../../src/lib/tabs/Tab.vue'
+  import Tabs from '../../src/lib/tabs/Tabs.vue'
   import {ref} from 'vue'
 	
   export default {
