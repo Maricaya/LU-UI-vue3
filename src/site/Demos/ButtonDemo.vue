@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import Button from "../../src/lib/button/Button.vue";
+  import {Button} from "../../lib";
 	
   export default {
     name: "ButtonDemo",

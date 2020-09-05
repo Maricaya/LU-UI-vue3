@@ -25,11 +25,9 @@
 </template>
 
 <script>
-  import Dialog from '../../src/lib/dialog/Dialog.vue'
-  import Button from '../../src/lib/button/Button.vue'
+  import {Dialog, Button, openDialog} from '../../lib'
   import {ref} from 'vue'
-  import {openDialog} from "../../src/lib/dialog/openDialog"
-  
+
   export default {
 	  components: {
       Dialog,
