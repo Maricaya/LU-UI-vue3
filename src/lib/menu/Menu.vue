@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
-import {computed, provide, Ref, ref} from 'vue'
+import {provide, Ref, ref} from 'vue'
 
 export const LUMenuSelectedKey = "LUMenuSelectedKey"
+export const LUMenuOpenKey = "LUMenuOpenKey"
 
 type SelectedKey = string | number
 
@@ -19,32 +20,36 @@ export type SelectedKeyContext = {
 export default {
   props: {
     defaultSelectedKey: [String, Number],
-    selectedKey: [String, Number]
+    defaultOpenKeys: [String, Number]
   },
   setup(props, context) {
-    const selected = ref<SelectedKey>(props.defaultSelectedKey);
-
-    const selectedKey = computed(() => {
-      if (props.selectedKey !== undefined) {
-        return props.selectedKey;
-      }
-      return selected.value;
-    })
-
+    const selectedKey = ref<SelectedKey>(props.defaultSelectedKey);
     const setSelectedKey = (key: SelectedKey) => {
-      selected.value = key;
-      context.emit("update:select-key", key);
-
+      selectedKey.value = key;
+      context.emit("select", selectedKey.value)
     }
-
     provide(LUMenuSelectedKey, {
       selectedKey,
       setSelectedKey
     });
 
-    return {
+    const openKeys = ref<Array<SelectedKey>>(props.defaultOpenKeys || []);
+    const enableOpenKey = (key: SelectedKey, enabled: boolean) => {
+      if (enabled) {
+        if (openKeys.value.indexOf(key) !== -1) {
+          openKeys.value.push(key)
+        }
+      }
+      else {
+        openKeys.value = openKeys.value.filter((i) => i !== key);
+      }
 
+      context.emit("open-change", [...openKeys.value])
     }
+    provide(LUMenuOpenKey, {
+      openKeys,
+      enableOpenKey
+    });
   }
 }
 </script>

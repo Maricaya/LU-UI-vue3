@@ -5,12 +5,18 @@
 		<div class="row">
 			<lu-menu
         default-selected-key="option-1"
+        :default-open-keys="['navigation-1']"
 				@select="onSelect"
 				@open-change="onOpenChange">
-        <lu-menu-item value="option-1">Navigation one</lu-menu-item>
-        <lu-menu-item value="option-2">Navigation two</lu-menu-item>
+        <lu-menu-item value="option-1">option 1</lu-menu-item>
+        <lu-menu-item value="option-2">option 2</lu-menu-item>
         <lu-menu-item value="option-3" :disabled="true">Navigation three</lu-menu-item>
-			</lu-menu>
+			  <lu-sub-menu value="navigation-1">
+          <template v-slot:title>Navigation One</template>
+          <lu-menu-item value="option-4">option 4</lu-menu-item>
+          <lu-menu-item value="option-5">option 5</lu-menu-item>
+        </lu-sub-menu>
+      </lu-menu>
 		</div>
 	</div>
 </template>
