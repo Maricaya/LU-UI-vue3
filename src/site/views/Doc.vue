@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-  import TopNav from "../components/Topnav.vue";
+  import TopNav from "../components/TopNav.vue";
   import {inject, Ref} from "vue";
   import {Menu, MenuGroup, MenuItem} from '../../lib'
   import {useRouter} from "vue-router";
@@ -57,7 +57,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.layout {
 		display: flex;
 		flex-direction: column;
@@ -76,7 +76,27 @@
 	}
 	.content {
 		display: flex;
-		> aside {
+    .title {
+      font-weight: 400;
+      color: #1f2f3d;
+    }
+    p {
+      font-size: 14px;
+      color: #5e6d82;
+      line-height: 1.5em;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+    }
+    h3 {
+      margin: 55px 0 20px;
+    }
+    .row {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    > aside {
       background: #fff;
 			flex-shrink: 0;
 		}

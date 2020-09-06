@@ -1,5 +1,5 @@
 <template>
-  <ul class="lu-menu">
+  <ul class="lu-menu" :class="{[mode]: true}">
     <slot/>
   </ul>
 </template>
@@ -9,6 +9,7 @@ import {provide, Ref, ref} from 'vue'
 
 export const LUMenuSelectedKey = "LUMenuSelectedKey"
 export const LUMenuOpenKey = "LUMenuOpenKey"
+export const LUMenuParentKey = "LUMenuParentKey"
 
 type SelectedKey = string | number
 
@@ -19,6 +20,9 @@ export type SelectedKeyContext = {
 
 export default {
   props: {
+    mode: {
+      type: String
+    },
     defaultSelectedKey: [String, Number],
     defaultOpenKeys: [String, Number]
   },
@@ -50,6 +54,17 @@ export default {
       openKeys,
       enableOpenKey
     });
+
+    const parentKey = ref("lu-menu-root");
+    const relationship = ref();
+    const setRelationship = (key, parentKey) => {
+      relationship.value.set(key, parentKey)
+    }
+    provide(LUMenuParentKey, {
+      parentKey,
+      relationship,
+      setRelationship
+    })
   }
 }
 </script>

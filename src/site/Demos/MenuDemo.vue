@@ -1,9 +1,24 @@
 <template>
-	<div class="container">
-		<div class="title">Menu 示例</div>
-		<h2>纵向菜单</h2>
-		<div class="row" style="width: 220px">
+	<div>
+		<h2 class="title">Menu 示例</h2>
+    <p>为网站提供导航功能的菜单。</p>
+    <h3 class="sub-title">横向菜单</h3>
+    <div class="row">
+      <lu-menu
+        mode="horizontal"
+        default-selected-key="option-1"
+        @select="onSelect"
+        @open-change="onOpenChange"
+      >
+        <lu-menu-item value="option-1">
+          Navigation 1
+        </lu-menu-item>
+      </lu-menu>
+    </div>
+    <h3 class="sub-title">纵向菜单</h3>
+		<div class="row">
 			<lu-menu
+        style="width: 220px"
         default-selected-key="option-1"
         :default-open-keys="['navigation-1']"
 				@select="onSelect"

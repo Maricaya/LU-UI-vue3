@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts">
-import {LUMenuSelectedKey, SelectedKeyContext} from './Menu.vue'
-import { inject,  } from 'vue'
+import {LUMenuSelectedKey, LUMenuParentKey,SelectedKeyContext} from './Menu.vue'
+import { inject } from 'vue'
 
 export default {
   props: {
@@ -28,6 +28,9 @@ export default {
   setup (props, context) {
     const {selectedKey, setSelectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
 
+    const {parentKey, setRelationShip} = inject(LUMenuParentKey)
+    // setRelationShip(props.value, parentKey);
+
     const onClick = () => {
       if (props.disabled === true) {
         return
@@ -36,6 +39,7 @@ export default {
         setSelectedKey(props.value)
       }
     }
+
     return {
       onClick,
       selectedKey
