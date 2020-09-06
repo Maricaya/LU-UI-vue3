@@ -5,8 +5,7 @@
       active: openKeys.indexOf(value) > -1,
       selected,
       disabled: disabled === true
-    }"
-  >
+    }">
     <div class="lu-sub-menu-title" @click="onClick">
       <slot name="title"/>
       <lu-icon
@@ -16,7 +15,7 @@
           :size="12"
       ></lu-icon>
     </div>
-    <ul class="lu-sub-menu-list">
+    <ul class="lu-sub-menu-list" v-if="openKeys.indexOf(value) > -1">
       <slot/>
     </ul>
   </li>

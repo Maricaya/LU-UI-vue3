@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="title">Menu 示例</div>
 		<h2>纵向菜单</h2>
-		<div class="row">
+		<div class="row" style="width: 220px">
 			<lu-menu
         default-selected-key="option-1"
         :default-open-keys="['navigation-1']"

@@ -1,16 +1,28 @@
 <template>
 	<div class="layout">
-		<Topnav class="nav"/>
+		<top-nav class="nav"/>
 		<div class="content">
 			<aside v-if="asideVisible">
-				<h2>组件列表</h2>
-				<ol>
-					<li><router-link to="/doc/switch">Switch 组件</router-link></li>
-					<li><router-link to="/doc/button">Button 组件</router-link></li>
-					<li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
-          <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
-          <li><router-link to="/doc/menu">Menu 组件</router-link></li>
-				</ol>
+        <lu-menu>
+          <lu-menu-item value="overview">组件列表</lu-menu-item>
+          <lu-menu-group>
+            <template v-slot:title>通用</template>
+            <lu-menu-item value="button" @click="onClick('button')">Button 组建</lu-menu-item>
+          </lu-menu-group>
+          <lu-menu-group>
+            <template v-slot:title>导航</template>
+            <lu-menu-item value="menu" @click="onClick('menu')">Menu 导航菜单</lu-menu-item>
+          </lu-menu-group>
+          <lu-menu-group>
+            <template v-slot:title>数据录入</template>
+            <lu-menu-item value="switch" @click="onClick('switch')">Switch 开关</lu-menu-item>
+            <lu-menu-item value="dialog" @click="onClick('dialog')">Dialog 开关</lu-menu-item>
+          </lu-menu-group>
+          <lu-menu-group>
+            <template v-slot:title>数据展示</template>
+            <lu-menu-item value="tabs" @click="onClick('tabs')">Tabs 导航菜单</lu-menu-item>
+          </lu-menu-group>
+        </lu-menu>
 			</aside>
 			<main>
 				<router-view></router-view>
@@ -20,15 +32,27 @@
 </template>
 
 <script lang="ts">
-  import Topnav from "../components/Topnav.vue";
+  import TopNav from "../components/Topnav.vue";
   import {inject, Ref} from "vue";
+  import {Menu, MenuGroup, MenuItem} from '../../lib'
+  import {useRouter} from "vue-router";
 
   export default {
     name: "Doc",
-    components: {Topnav},
+    components: {
+      TopNav,
+      "lu-menu": Menu,
+      "lu-menu-group": MenuGroup,
+      "lu-menu-item": MenuItem,
+    },
     setup() {
+      const router = useRouter();
+
       const asideVisible = inject<Ref<boolean>>("asideVisible");
-      return {asideVisible};
+      const onClick = (key: string) => {
+        router.push(`/doc/${key}`);
+      }
+      return {asideVisible, onClick};
     }
   };
 </script>
@@ -44,7 +68,7 @@
 		> .content {
 			flex-grow: 1;
 			padding-top: 60px;
-			padding-left: 156px;
+			padding-left: 240px;
 			@media (max-width: 500px) {
 				padding-left: 0;
 			}
@@ -53,6 +77,7 @@
 	.content {
 		display: flex;
 		> aside {
+      background: #fff;
 			flex-shrink: 0;
 		}
 		> main {
@@ -61,7 +86,7 @@
 		}
 	}
 	aside {
-		width: 150px;
+		width: 220px;
 		position: fixed;
 		top: 0;
 		left: 0;

@@ -36,7 +36,7 @@ export default {
     const openKeys = ref<Array<SelectedKey>>(props.defaultOpenKeys || []);
     const enableOpenKey = (key: SelectedKey, enabled: boolean) => {
       if (enabled) {
-        if (openKeys.value.indexOf(key) !== -1) {
+        if (openKeys.value.indexOf(key) === -1) {
           openKeys.value.push(key)
         }
       }
@@ -61,6 +61,6 @@ export default {
   margin-bottom: 0;
   font-size: 14px;
   border-right: 1px solid $lu-border;
-  width: 220px;
+  //width: 220px;
 }
 </style>
