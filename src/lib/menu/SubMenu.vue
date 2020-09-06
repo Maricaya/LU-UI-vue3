@@ -9,6 +9,12 @@
   >
     <div class="lu-sub-menu-title" @click="onClick">
       <slot name="title"/>
+      <lu-icon
+          v-if="showArrow"
+          name="chevron-down"
+          class="lu-sub-menu-icon"
+          :size="12"
+      ></lu-icon>
     </div>
     <ul class="lu-sub-menu-list">
       <slot/>
@@ -19,8 +25,12 @@
 <script lang="ts">
 import { computed, inject } from 'vue'
 import {LUMenuOpenKey} from "./Menu.vue";
+import {Icon} from "dwc-icons";
 
 export default {
+  components: {
+    "lu-icon": Icon
+  },
   props: {
     disabled: {
       type: Boolean
@@ -28,6 +38,10 @@ export default {
     value: {
       type: [Number, String],
       required: true
+    },
+    showArrow: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
@@ -99,7 +113,7 @@ export default {
 
     &.disabled {
       > .lu-sub-menu-title {
-        color: $lu-disable;
+        color: $lu-disabled;
         cursor: not-allowed;
       }
     }
@@ -131,13 +145,13 @@ export default {
       left: 0;
       z-index: 1000;
       width: 100%;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.23921568627451);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.23921568627451);
     }
   }
 
   &.disabled {
     > .lu-sub-menu-title {
-      color: $lu-disable;
+      color: $lu-disabled;
       cursor: not-allowed;
     }
   }

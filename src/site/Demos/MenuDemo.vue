@@ -16,6 +16,14 @@
           <lu-menu-item value="option-4">option 4</lu-menu-item>
           <lu-menu-item value="option-5">option 5</lu-menu-item>
         </lu-sub-menu>
+        <lu-sub-menu value="navigation-2">
+          <template v-slot:title>Navigation Two</template>
+          <lu-menu-group>
+            <template v-slot:title>Group One</template>
+          </lu-menu-group>
+          <lu-menu-item value="option-6">Option 6</lu-menu-item>
+          <lu-menu-item value="option-7">Option 7</lu-menu-item>
+        </lu-sub-menu>
       </lu-menu>
 		</div>
 	</div>
@@ -32,8 +40,12 @@
       "lu-sub-menu": SubMenu,
     },
     setup () {
-      const onSelect = () => {}
-      const onOpenChange = () => {}
+      const onSelect = (selectKey) => {
+        console.log(selectKey);
+      }
+      const onOpenChange = (b) => {
+        console.log(b);
+      }
       return { onSelect, onOpenChange }
     }
   }
