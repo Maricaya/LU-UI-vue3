@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts">
-import {provide, Ref, ref} from 'vue'
+import {provide, Ref, ref, readonly} from 'vue'
 
+export const LUMenuMode = "LUMenuMode"
 export const LUMenuSelectedKey = "LUMenuSelectedKey"
 export const LUMenuOpenKey = "LUMenuOpenKey"
 export const LUMenuParentKey = "LUMenuParentKey"
@@ -21,12 +22,18 @@ export type SelectedKeyContext = {
 export default {
   props: {
     mode: {
-      type: String
+      type: String,
+      default: "vertical",
+      validator(value: string): boolean {
+        return ["vertical", "horizontal"].indexOf(value) > -1;
+      }
     },
     defaultSelectedKey: [String, Number],
     defaultOpenKeys: [String, Number]
   },
   setup(props, context) {
+    provide(LUMenuMode, readonly(ref(props.mode)));
+
     const selectedKey = ref<SelectedKey>(props.defaultSelectedKey);
     const setSelectedKey = (key: SelectedKey) => {
       selectedKey.value = key;
@@ -38,6 +45,8 @@ export default {
     });
 
     const openKeys = ref<Array<SelectedKey>>(props.defaultOpenKeys || []);
+    console.log('openKeys', openKeys, props.defaultOpenKeys || [])
+    // const openKeys = computed()
     const enableOpenKey = (key: SelectedKey, enabled: boolean) => {
       if (enabled) {
         if (openKeys.value.indexOf(key) === -1) {
@@ -56,7 +65,7 @@ export default {
     });
 
     const parentKey = ref("lu-menu-root");
-    const relationship = ref();
+    const relationship = ref(new Map<string | number, string | number>());
     const setRelationship = (key, parentKey) => {
       relationship.value.set(key, parentKey)
     }
@@ -76,6 +85,12 @@ export default {
   margin-bottom: 0;
   font-size: 14px;
   border-right: 1px solid $lu-border;
-  //width: 220px;
+  &.horizontal {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: none;
+    border-bottom: 1px solid $lu-border;
+  }
 }
 </style>

@@ -3,6 +3,7 @@
 		class="lu-menu-item"
 		:class="{
       active: selectedKey === value,
+      [mode]: true,
       disabled: disabled === true
 		}"
     @click="onClick"
@@ -12,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {LUMenuSelectedKey, LUMenuParentKey,SelectedKeyContext} from './Menu.vue'
+import {LUMenuSelectedKey, LUMenuParentKey, SelectedKeyContext, LUMenuMode} from './Menu.vue'
 import { inject } from 'vue'
 
 export default {
@@ -26,21 +27,25 @@ export default {
     }
   },
   setup (props, context) {
+    const mode = inject(LUMenuMode);
+
     const {selectedKey, setSelectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
 
-    const {parentKey, setRelationShip} = inject(LUMenuParentKey)
-    // setRelationShip(props.value, parentKey);
+    const {parentKey, setRelationship} = inject(LUMenuParentKey);
+
+    setRelationship(props.value, parentKey);
 
     const onClick = () => {
       if (props.disabled === true) {
         return
       }
-      if (selectedKey !== props.value) {
+      if (selectedKey.value !== props.value) {
         setSelectedKey(props.value)
       }
     }
 
     return {
+      mode,
       onClick,
       selectedKey
     }
@@ -50,7 +55,26 @@ export default {
 
 <style lang="scss">
 @import "../assets/var.scss";
+
 .lu-menu {
+  &.horizontal {
+    > .lu-menu-item {
+      &.active {
+        background-color: #fff;
+
+        &::after {
+          position: absolute;
+          bottom: -1px;
+          right: 0;
+          left: 0;
+          display: block;
+          content: "";
+          height: 2px;
+          background-color: $lu-blue;
+        }
+      }
+    }
+  }
 }
 
 .lu-menu-item {
