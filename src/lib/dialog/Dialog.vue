@@ -23,8 +23,9 @@
 
 <script lang="ts">
 	import Button from '../button/Button.vue';
-	
+
   export default {
+    name: 'lu-dialog',
     props: {
       visible: {
         type: Boolean,
