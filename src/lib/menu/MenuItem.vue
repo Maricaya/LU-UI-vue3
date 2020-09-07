@@ -17,6 +17,7 @@ import {LUMenuSelectedKey, LUMenuParentKey, SelectedKeyContext, LUMenuMode} from
 import { inject } from 'vue'
 
 export default {
+  name: 'lu-menu-item',
   props: {
     value: {
       type: [Number, String],

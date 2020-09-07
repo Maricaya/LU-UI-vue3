@@ -6,7 +6,7 @@
 
 <script lang="ts">
   export default {
-    name: "Tab"
+    name: "lu-tab"
   }
 </script>
 

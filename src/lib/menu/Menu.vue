@@ -20,6 +20,7 @@ export type SelectedKeyContext = {
 }
 
 export default {
+  name: 'lu-menu',
   props: {
     mode: {
       type: String,

@@ -18,6 +18,7 @@
           :size="12"
       ></lu-icon>
     </div>
+
     <ul class="lu-sub-menu-list" v-if="openKeys.indexOf(value) > -1">
       <slot/>
     </ul>
@@ -31,6 +32,7 @@ import {Icon} from "dwc-icons";
 import { ClickOutside } from "../directives/ClickOutside.ts";
 
 export default {
+  name: 'lu-sub-menu',
   components: {
     "lu-icon": Icon
   },
