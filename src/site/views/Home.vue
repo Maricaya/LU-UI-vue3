@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="topnavAndBanner">
     <Top-nav/>
     <div class="banner">
       <h1>Blue UI</h1>
@@ -22,6 +22,9 @@ export default {
 </script>
 
 <style lang="scss">
+.topnavAndBanner {
+  background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+}
 .banner {
   padding: 100px 0;
   display: flex;

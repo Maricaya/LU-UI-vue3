@@ -10,48 +10,43 @@
 </template>
 
 <script lang="ts">
-import {inject, Ref} from "vue";
+import {inject, Ref} from 'vue'
 
 export default {
   setup() {
-    const asideVisible = inject<Ref<boolean>>("asideVisible");
+    const asideVisible = inject<Ref<boolean>>('asideVisible')
     const toggleMenu = () => {
-      asideVisible.value = !asideVisible.value;
-    };
-    return {toggleMenu};
+      asideVisible.value = !asideVisible.value
+    }
+    return {toggleMenu}
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .top-nav {
-  box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
+  //box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
   display: flex;
   padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff;
   z-index: 10;
   justify-content: center;
   align-items: center;
-
   > .logo {
     max-width: 6em;
     margin-right: auto;
   }
-
   > .menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-
     > li {
       margin: 0 1em;
     }
   }
-
   > .toggleAside {
     background: red;
     width: 24px;
@@ -61,7 +56,6 @@ export default {
     top: 50%;
     transform: translateY(-50%);
   }
-
   @media (max-width: 500px) {
     > .menu {
       display: none;
