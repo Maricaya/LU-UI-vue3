@@ -1,6 +1,6 @@
 <template>
 	<div class="layout">
-		<top-nav class="nav"/>
+		<top-nav toggle-menu-button-visible class="nav"/>
 		<div class="content">
 			<aside v-if="asideVisible">
         <lu-menu>

@@ -16,7 +16,8 @@
   import {computed, ref, watchEffect, onMounted} from 'vue'
 
   export default {
-	  props: {
+    name: 'lu-tab-pane',
+    props: {
       selected: {
         type: String
       }

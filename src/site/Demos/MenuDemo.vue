@@ -10,9 +10,17 @@
         @select="onSelect"
         @open-change="onOpenChange"
       >
-        <lu-menu-item value="option-1">
-          Navigation 1
-        </lu-menu-item>
+        <lu-menu-item value="option-1">Navigation 1</lu-menu-item>
+        <lu-sub-menu value="navigation-2">
+          <template v-slot:title>Navigation 2</template>
+          <lu-menu-item value="option-3">option-3</lu-menu-item>
+          <lu-menu-item value="option-4">option-4</lu-menu-item>
+          <lu-sub-menu value="navigation-3">
+            <template v-slot:title>Navigation 3</template>
+            <lu-menu-item value="option-5">option-5</lu-menu-item>
+            <lu-menu-item value="option-6">option-6</lu-menu-item>
+          </lu-sub-menu>
+        </lu-sub-menu>
       </lu-menu>
     </div>
     <h3 class="sub-title">纵向菜单</h3>

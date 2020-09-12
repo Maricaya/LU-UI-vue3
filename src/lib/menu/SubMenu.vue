@@ -4,8 +4,11 @@
     :class="{
       active: openKeys.indexOf(value) > -1,
       selected,
+      [mode]: true,
       disabled: disabled === true
-    }">
+    }"
+    v-click-outside="onOutside"
+  >
     <div class="lu-sub-menu-title" @click="onClick">
       <slot name="title"/>
       <lu-icon
@@ -15,6 +18,7 @@
           :size="12"
       ></lu-icon>
     </div>
+
     <ul class="lu-sub-menu-list" v-if="openKeys.indexOf(value) > -1">
       <slot/>
     </ul>
@@ -22,14 +26,17 @@
 </template>
 
 <script lang="ts">
-import { computed, inject } from 'vue'
-import {LUMenuOpenKey} from "./Menu.vue";
+import {computed, inject, provide} from 'vue'
+import {LUMenuOpenKey, LUMenuMode, SelectedKeyContext, LUMenuSelectedKey, LUMenuParentKey} from './Menu.vue'
 import {Icon} from "dwc-icons";
+import { ClickOutside } from "../directives/ClickOutside.ts";
 
 export default {
+  name: 'lu-sub-menu',
   components: {
     "lu-icon": Icon
   },
+  directives: { "click-outside": ClickOutside },
   props: {
     disabled: {
       type: Boolean
@@ -44,9 +51,44 @@ export default {
     }
   },
   setup(props, context) {
+    const mode = inject(LUMenuMode);
+
+    const {selectedKey, setSelectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
+    const {parentKey, relationship, setRelationship} = inject(LUMenuParentKey)
+
+    setRelationship(props.value, parentKey);
+
+    const calAncestors = () => {
+      const ancestors: Array<string | number> = [];
+
+      let current = selectedKey.value;
+
+      while (current && relationship.value.has(current)) {
+        const ancestor = relationship.value.get(current);
+
+        if (ancestor !== "dwc-menu-root") {
+          ancestors.push(ancestor);
+          current = ancestor;
+        } else {
+          current = "";
+        }
+      }
+
+      return ancestors;
+    };
+
     const selected = computed(() => {
-      return false
+      if (mode.value !== "horizontal") {
+        return false;
+      }
+      if (!selectedKey.value) {
+        return false;
+      }
+      const ancestors = calAncestors();
+
+      return ancestors.indexOf(props.value) > -1;
     })
+
     const {openKeys, enableOpenKey} = inject(LUMenuOpenKey)
     const onClick = () => {
       if (props.disabled) {
@@ -54,10 +96,19 @@ export default {
       }
       enableOpenKey(props.value, openKeys.value.indexOf(props.value) === -1)
     }
+
+    const onOutside = () => {
+      if (mode.value === "horizontal" && openKeys.value.indexOf(props.value) > -1) {
+        enableOpenKey(props.value, false);
+      }
+    }
+
     return {
+      mode,
       selected,
       openKeys,
-      onClick
+      onClick,
+      onOutside
     }
   }
 }
@@ -86,6 +137,7 @@ export default {
         }
 
         > .lu-sub-menu-list {
+          background: #fff;
           margin-top: 3px;
         }
       }

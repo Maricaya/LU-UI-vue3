@@ -1,67 +1,78 @@
 <template>
   <div class="top-nav">
-    <div class="logo">LOGO</div>
+    <router-link class="logo" to="/">
+      <svg class="icon">
+        <use xlink:href="#icon-lu"></use>
+      </svg>
+    </router-link>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+      <li><router-link to="/doc">文档</router-link></li>
     </ul>
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 
 <script lang="ts">
-import {inject, Ref} from "vue";
+import {inject, Ref} from 'vue'
 
 export default {
+  props: {
+    toggleMenuButtonVisible: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
-    const asideVisible = inject<Ref<boolean>>("asideVisible");
+    const asideVisible = inject<Ref<boolean>>('asideVisible')
     const toggleMenu = () => {
-      asideVisible.value = !asideVisible.value;
-    };
-    return {toggleMenu};
+      asideVisible.value = !asideVisible.value
+    }
+    return {toggleMenu}
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .top-nav {
-  box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
+  //box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
   display: flex;
   padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff;
   z-index: 10;
   justify-content: center;
   align-items: center;
-
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
-
   > .menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-
     > li {
       margin: 0 1em;
     }
   }
-
   > .toggleAside {
     background: red;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
+    display: none;
+    background: fade-out(black, 0.9);
   }
-
   @media (max-width: 500px) {
     > .menu {
       display: none;
