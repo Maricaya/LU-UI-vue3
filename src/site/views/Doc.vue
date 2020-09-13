@@ -33,6 +33,7 @@
 
 <script lang="ts">
   import TopNav from "../components/TopNav.vue";
+  import MiddleNav from "../components/MiddleNav.vue";
   import {inject, Ref} from "vue";
   import {Menu, MenuGroup, MenuItem} from '../../lib'
   import {useRouter} from "vue-router";
@@ -41,6 +42,7 @@
     name: "Doc",
     components: {
       TopNav,
+      MiddleNav,
       "lu-menu": Menu,
       "lu-menu-group": MenuGroup,
       "lu-menu-item": MenuItem,
@@ -59,9 +61,9 @@
 
 <style lang="scss">
 	.layout {
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
+		//display: flex;
+		//flex-direction: column;
+		//height: 100vh;
 		> .nav {
 			flex-shrink: 0;
 		}
@@ -106,11 +108,11 @@
 		}
 	}
 	aside {
-		width: 220px;
+		width: 235px;
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding: 70px 16px 16px;
+		padding: 70px 0 16px;
 		height: 100%;
 		> h2 {
 			margin-bottom: 4px;

@@ -4,9 +4,13 @@
       <svg class="icon">
         <use xlink:href="#icon-lu"></use>
       </svg>
+      &nbsp;&nbsp;&nbsp;LU UI
     </router-link>
     <ul class="menu">
       <li><router-link to="/doc">文档</router-link></li>
+      <li><router-link to="/doc"><svg>
+        <use xlink:href="#icon-github"></use>
+      </svg></router-link></li>
     </ul>
     <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
       <use xlink:href="#icon-menu"></use>
@@ -36,7 +40,8 @@ export default {
 
 <style lang="scss" scoped>
 .top-nav {
-  //box-shadow: rgba(2, 8, 20, 0.06) 0 1px 3px, rgba(2, 8, 20, 0.04) 0 1px 2px;
+  background: #3f51b5;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0 1px 18px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   padding: 16px;
   position: fixed;
@@ -46,22 +51,34 @@ export default {
   z-index: 10;
   justify-content: center;
   align-items: center;
-  > .logo {
-    max-width: 6em;
-    margin-right: auto;
-    > svg {
-      width: 32px;
-      height: 32px;
-    }
+  color: white;
+  font-weight: 600;
+
+  .logo {
+    padding: 0 16px;
   }
+  svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+  }
+  > .logo {
+    max-width: 20em;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+  }
+
   > .menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
+    align-items: center;
     > li {
       margin: 0 1em;
     }
   }
+
   > .toggleAside {
     background: red;
     width: 32px;
@@ -73,6 +90,7 @@ export default {
     display: none;
     background: fade-out(black, 0.9);
   }
+
   @media (max-width: 500px) {
     > .menu {
       display: none;
