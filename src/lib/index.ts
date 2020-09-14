@@ -13,6 +13,7 @@ import { default as Menu } from "./menu/Menu.vue";
 import { default as MenuGroup } from "./menu/MenuGroup.vue";
 import { default as MenuItem } from "./menu/MenuItem.vue";
 import { default as SubMenu } from "./menu/SubMenu.vue";
+import { default as Drawer } from "./drawer/Drawer.vue";
 
 const components = [
   CollapseTransition,
@@ -25,10 +26,8 @@ const components = [
   MenuGroup,
   MenuItem,
   SubMenu,
+  Drawer
 ];
-components.map(item => {
-  console.log(item, 'item')
-})
 export {
   CollapseTransition,
   Button,
@@ -41,6 +40,7 @@ export {
   MenuGroup,
   MenuItem,
   SubMenu,
+  Drawer
 };
 
 export const version = "0.0.1";

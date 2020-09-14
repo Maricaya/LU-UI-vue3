@@ -6,6 +6,7 @@ import ButtonDemo from './Demos/ButtonDemo.vue';
 import DialogDemo from './Demos/DialogDemo.vue';
 import TabsDemo from './Demos/TabsDemo.vue';
 import MenuDemo from './Demos/MenuDemo.vue';
+import DrawerDemo from './Demos/DrawerDemo.vue';
 
 // 内存型路由、hash 路由、history 路由
 const history = createWebHashHistory();
@@ -20,6 +21,7 @@ export const router = createRouter({
         {path: 'dialog', component: DialogDemo},
         {path: 'tabs', component: TabsDemo},
         {path: 'menu', component: MenuDemo},
+        {path: 'drawer', component: DrawerDemo},
       ]}
   ]
 });

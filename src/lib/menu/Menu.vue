@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/var.scss";
+@import "../assets/styles/commons/var.scss";
 .lu-menu {
   list-style: none;
   margin-bottom: 0;

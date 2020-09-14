@@ -7,7 +7,7 @@
           <lu-menu-item value="overview">组件列表</lu-menu-item>
           <lu-menu-group>
             <template v-slot:title>通用</template>
-            <lu-menu-item value="button" @click="onClick('button')">Button 组建</lu-menu-item>
+            <lu-menu-item value="button" @click="onClick('button')">Button 按钮</lu-menu-item>
           </lu-menu-group>
           <lu-menu-group>
             <template v-slot:title>导航</template>
@@ -20,7 +20,8 @@
           </lu-menu-group>
           <lu-menu-group>
             <template v-slot:title>数据展示</template>
-            <lu-menu-item value="tabs" @click="onClick('tabs')">Tabs 导航菜单</lu-menu-item>
+            <lu-menu-item value="tabs" @click="onClick('tabs')">Tabs 标签页</lu-menu-item>
+            <lu-menu-item value="drawer" @click="onClick('drawer')">Drawer 抽屉</lu-menu-item>
           </lu-menu-group>
         </lu-menu>
 			</aside>
@@ -101,6 +102,7 @@
     > aside {
       background: #fff;
 			flex-shrink: 0;
+      z-index: 3;
 		}
 		> main {
 			flex-grow: 1;

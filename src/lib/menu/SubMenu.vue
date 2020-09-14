@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import {computed, inject, provide} from 'vue'
+import {computed, inject} from 'vue'
 import {LUMenuOpenKey, LUMenuMode, SelectedKeyContext, LUMenuSelectedKey, LUMenuParentKey} from './Menu.vue'
 import {Icon} from "dwc-icons";
 import { ClickOutside } from "../directives/ClickOutside.ts";
@@ -50,10 +50,10 @@ export default {
       default: true
     }
   },
-  setup(props, context) {
+  setup(props) {
     const mode = inject(LUMenuMode);
 
-    const {selectedKey, setSelectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
+    const {selectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
     const {parentKey, relationship, setRelationship} = inject(LUMenuParentKey)
 
     setRelationship(props.value, parentKey);
@@ -115,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/var.scss";
+@import "../assets/styles/commons/var.scss";
 
 .lu-menu {
   > .lu-sub-menu {
@@ -132,7 +132,7 @@ export default {
             display: block;
             content: "";
             height: 2px;
-            background-color: $lu-blue;
+            background-color: $lu-purple;
           }
         }
 
@@ -156,7 +156,7 @@ export default {
             display: block;
             content: "";
             height: 2px;
-            background-color: $lu-blue;
+            background-color: $lu-purple;
           }
         }
       }
@@ -176,7 +176,7 @@ export default {
 
   &.active {
     > .lu-sub-menu-title {
-      color: $lu-blue;
+      color: $lu-purple;
 
       > .lu-sub-menu-icon {
         position: absolute;
@@ -215,7 +215,7 @@ export default {
     position: relative;
 
     &:hover {
-      color: $lu-blue-highlight;
+      color: $lu-purple-highlight;
     }
 
     > .lu-sub-menu-icon {

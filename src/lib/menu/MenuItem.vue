@@ -27,7 +27,7 @@ export default {
       type: Boolean
     }
   },
-  setup (props, context) {
+  setup (props) {
     const mode = inject(LUMenuMode);
 
     const {selectedKey, setSelectedKey} = inject<SelectedKeyContext>(LUMenuSelectedKey)
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/var.scss";
+@import "../assets/styles/commons/var.scss";
 
 .lu-menu {
   &.horizontal {
@@ -71,7 +71,8 @@ export default {
           display: block;
           content: "";
           height: 2px;
-          background-color: $lu-blue;
+          //background-color: $lu-blue;
+          background-color: $lu-purple;
         }
       }
     }
@@ -88,11 +89,11 @@ export default {
   white-space: nowrap;
 
   &:hover {
-    color: $lu-blue-highlight;
+    color: $lu-purple-highlight;
   }
 
   &.active {
-    color: $lu-blue;
+    color: $lu-purple;
     background-color: $lu-background-selected;
   }
 
@@ -111,7 +112,7 @@ export default {
       display: block;
       content: "";
       width: 2px;
-      background-color: $lu-blue;
+      background-color: $lu-purple;
       transition: transform $lu-transition;
       transform: scale(0);
     }
