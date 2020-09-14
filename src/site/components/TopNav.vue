@@ -80,7 +80,6 @@ export default {
   }
 
   > .toggleAside {
-    background: red;
     width: 32px;
     height: 32px;
     position: absolute;

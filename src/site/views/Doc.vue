@@ -1,29 +1,13 @@
 <template>
 	<div class="layout">
-		<top-nav toggle-menu-button-visible class="nav"/>
+		<top-nav toggle-menu-button-visible
+             class="nav"
+             @click="openDrawer"/>
 		<div class="content">
 			<aside v-if="asideVisible">
-        <lu-menu>
-          <lu-menu-item value="overview">组件列表</lu-menu-item>
-          <lu-menu-group>
-            <template v-slot:title>通用</template>
-            <lu-menu-item value="button" @click="onClick('button')">Button 按钮</lu-menu-item>
-          </lu-menu-group>
-          <lu-menu-group>
-            <template v-slot:title>导航</template>
-            <lu-menu-item value="menu" @click="onClick('menu')">Menu 导航菜单</lu-menu-item>
-          </lu-menu-group>
-          <lu-menu-group>
-            <template v-slot:title>数据录入</template>
-            <lu-menu-item value="switch" @click="onClick('switch')">Switch 开关</lu-menu-item>
-            <lu-menu-item value="dialog" @click="onClick('dialog')">Dialog 开关</lu-menu-item>
-          </lu-menu-group>
-          <lu-menu-group>
-            <template v-slot:title>数据展示</template>
-            <lu-menu-item value="tabs" @click="onClick('tabs')">Tabs 标签页</lu-menu-item>
-            <lu-menu-item value="drawer" @click="onClick('drawer')">Drawer 抽屉</lu-menu-item>
-          </lu-menu-group>
-        </lu-menu>
+        <lu-drawer ref="drawer">
+          <aside-menu/>
+        </lu-drawer>
 			</aside>
 			<main>
 				<router-view></router-view>
@@ -34,37 +18,30 @@
 
 <script lang="ts">
   import TopNav from "../components/TopNav.vue";
-  import MiddleNav from "../components/MiddleNav.vue";
-  import {inject, Ref} from "vue";
-  import {Menu, MenuGroup, MenuItem} from '../../lib'
-  import {useRouter} from "vue-router";
+  import AsideMenu from "../components/AsideMenu.vue";
+  import {inject, onMounted, ref, Ref} from 'vue'
+  import {Drawer} from '../../lib'
 
   export default {
     name: "Doc",
     components: {
       TopNav,
-      MiddleNav,
-      "lu-menu": Menu,
-      "lu-menu-group": MenuGroup,
-      "lu-menu-item": MenuItem,
+      AsideMenu,
+      "lu-drawer": Drawer
     },
     setup() {
-      const router = useRouter();
-
       const asideVisible = inject<Ref<boolean>>("asideVisible");
-      const onClick = (key: string) => {
-        router.push(`/doc/${key}`);
+      const drawer = ref(null);
+      const openDrawer = () => {
+        drawer.value.toggleDrawer()
       }
-      return {asideVisible, onClick};
+      return {asideVisible, drawer, openDrawer};
     }
   };
 </script>
 
 <style lang="scss">
 	.layout {
-		//display: flex;
-		//flex-direction: column;
-		//height: 100vh;
 		> .nav {
 			flex-shrink: 0;
 		}
