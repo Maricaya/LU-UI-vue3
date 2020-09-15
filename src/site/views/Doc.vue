@@ -5,12 +5,13 @@
              @click="openDrawer"/>
 		<div class="content">
 			<aside v-if="asideVisible">
-        <lu-drawer ref="drawer">
+        <lu-drawer ref="drawer" class="show-drawer">
           <aside-menu/>
         </lu-drawer>
-			</aside>
+        <aside-menu class="show-normal-menu"/>
+      </aside>
 			<main>
-				<router-view></router-view>
+        <router-view></router-view>
 			</main>
 		</div>
 	</div>
@@ -19,7 +20,7 @@
 <script lang="ts">
   import TopNav from "../components/TopNav.vue";
   import AsideMenu from "../components/AsideMenu.vue";
-  import {inject, onMounted, ref, Ref} from 'vue'
+  import {inject, ref, Ref} from 'vue'
   import {Drawer} from '../../lib'
 
   export default {
@@ -35,7 +36,11 @@
       const openDrawer = () => {
         drawer.value.toggleDrawer()
       }
-      return {asideVisible, drawer, openDrawer};
+      return {
+        asideVisible,
+        drawer,
+        openDrawer
+      };
     }
   };
 </script>
@@ -80,6 +85,17 @@
       background: #fff;
 			flex-shrink: 0;
       z-index: 3;
+      .show-drawer {
+        display: none;
+        @media (max-width: 500px) {
+          display: block;
+        }
+      }
+      .show-normal-menu {
+        @media (max-width: 500px) {
+          display: none;
+        }
+      }
 		}
 		> main {
 			flex-grow: 1;
