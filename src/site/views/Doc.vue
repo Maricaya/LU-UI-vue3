@@ -52,26 +52,14 @@
 		}
 		> .content {
 			flex-grow: 1;
-			padding-top: 60px;
-			padding-left: 240px;
+			padding-top: 80px;
+			padding-left: 250px;
 			@media (max-width: 500px) {
 				padding-left: 0;
 			}
 		}
 	}
 	.content {
-		display: flex;
-    .title {
-      font-weight: 400;
-      color: #1f2f3d;
-    }
-    p {
-      font-size: 14px;
-      color: #5e6d82;
-      line-height: 1.5em;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-    }
     h3 {
       margin: 55px 0 20px;
     }
@@ -99,7 +87,11 @@
 		}
 		> main {
 			flex-grow: 1;
-			padding: 16px;
+      color: rgba(0,0,0,.87);
+      padding: 20px 50px;
+      line-height: 1.5;
+      min-width: 700px;
+      background-color: #fff;
 		}
 	}
 	aside {

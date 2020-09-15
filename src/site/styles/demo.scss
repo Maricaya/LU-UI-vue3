@@ -1,0 +1,27 @@
+.header {
+  h2 {
+    margin-bottom: 25px;
+  }
+}
+p {
+  font-size: 16px;
+  line-height: 28px;
+  color: rgba(0,0,0,.87);
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+.content{
+  h3 {
+    font-size: 20px;
+    padding-top: 20px;
+    margin-top: -20px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
+  .example {
+    padding: 30px;
+    border-radius: 4px;
+    margin: 24px 0;
+    border: 1px solid rgba(0,0,0,.2);
+  }
+}
