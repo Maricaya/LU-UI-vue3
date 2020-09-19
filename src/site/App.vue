@@ -10,6 +10,7 @@
     name: "App",
     setup() {
       const width = document.documentElement.clientWidth;
+
       const asideVisible = ref(width > 500);
       provide('asideVisible', asideVisible);
       router.afterEach(() => {

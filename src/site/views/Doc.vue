@@ -4,11 +4,12 @@
              class="nav"
              @click="openDrawer"/>
 		<div class="content">
-			<aside v-if="asideVisible">
-        <lu-drawer ref="drawer">
+			<aside>
+        <lu-drawer ref="drawer" v-if="!asideVisible">
           <aside-menu/>
         </lu-drawer>
-			</aside>
+        <aside-menu  v-else/>
+      </aside>
 			<main>
 				<router-view></router-view>
 			</main>
@@ -19,7 +20,7 @@
 <script lang="ts">
   import TopNav from "../components/TopNav.vue";
   import AsideMenu from "../components/AsideMenu.vue";
-  import {inject, onMounted, ref, Ref} from 'vue'
+  import {inject, ref, Ref} from 'vue'
   import {Drawer} from '../../lib'
 
   export default {
@@ -31,6 +32,7 @@
     },
     setup() {
       const asideVisible = inject<Ref<boolean>>("asideVisible");
+      console.log('asideVisible', asideVisible)
       const drawer = ref(null);
       const openDrawer = () => {
         drawer.value.toggleDrawer()

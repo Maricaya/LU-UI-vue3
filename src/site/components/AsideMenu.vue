@@ -1,6 +1,10 @@
 <template>
   <lu-menu>
-    <lu-menu-item value="overview">组件列表</lu-menu-item>
+<!--    <h2 style="margin-left: 25px;padding: 20px 0">文档</h2>-->
+    <lu-menu-item value="intro" @click="onClick('intro')">介绍</lu-menu-item>
+    <lu-menu-item value="install" @click="onClick('install')">安装</lu-menu-item>
+    <lu-menu-item value="getStarted" @click="onClick('getStarted')">开始</lu-menu-item>
+
     <lu-menu-group>
       <template v-slot:title>通用</template>
       <lu-menu-item value="button" @click="onClick('button')">Button 按钮</lu-menu-item>
