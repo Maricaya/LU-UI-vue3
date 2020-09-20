@@ -1,5 +1,5 @@
 <template>
-  <lu-menu>
+  <lu-menu style="background: #fff">
 <!--    <h2 style="margin-left: 25px;padding: 20px 0">文档</h2>-->
     <lu-menu-item value="intro" @click="onClick('intro')">介绍</lu-menu-item>
     <lu-menu-item value="install" @click="onClick('install')">安装</lu-menu-item>

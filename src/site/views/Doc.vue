@@ -8,7 +8,7 @@
         <lu-drawer ref="drawer" v-if="!asideVisible">
           <aside-menu/>
         </lu-drawer>
-        <aside-menu  v-else/>
+        <aside-menu v-else-if="width > 500"/>
       </aside>
 			<main>
 				<router-view></router-view>
@@ -32,12 +32,12 @@
     },
     setup() {
       const asideVisible = inject<Ref<boolean>>("asideVisible");
-      console.log('asideVisible', asideVisible)
+      const width = document.documentElement.clientWidth;
       const drawer = ref(null);
       const openDrawer = () => {
         drawer.value.toggleDrawer()
       }
-      return {asideVisible, drawer, openDrawer};
+      return {asideVisible, drawer, openDrawer, width};
     }
   };
 </script>
@@ -79,7 +79,7 @@
       align-items: center;
     }
     > aside {
-      background: #fff;
+      background: transparent;
 			flex-shrink: 0;
       z-index: 3;
 		}

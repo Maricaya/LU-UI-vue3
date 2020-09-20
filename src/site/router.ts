@@ -17,9 +17,10 @@ const md = filename => h(Markdown, {path: `../markdown/${filename}.md`, key: fil
 export const router = createRouter({
   history,
   routes: [
-    {path: '/', redirect: "/doc"},
+    {path: '/', redirect: "/home"},
     {path: '/home', component: Home},
     {path: '/doc', component: Doc, children: [
+        {path: '', redirect: '/doc/intro'},
         {path: 'intro', component: md('intro')},
         {path: 'getStarted', component: md('getStarted')},
         {path: 'install', component: md('install')},
