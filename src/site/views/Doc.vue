@@ -36,11 +36,7 @@
       const openDrawer = () => {
         drawer.value.toggleDrawer()
       }
-      return {
-        asideVisible,
-        drawer,
-        openDrawer
-      };
+      return {asideVisible, drawer, openDrawer};
     }
   };
 </script>
