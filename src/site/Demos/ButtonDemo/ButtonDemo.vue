@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
-    <h2> Buttons </h2>
-    <p>Angular Material buttons are native <\button> or <\a> elements enhanced with Material Design styling and ink ripples.</p>
+    <h2> Button </h2>
+    <p> A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic. </p>
   </div>
   <div class="content">
     <button-example/>

@@ -1,7 +1,7 @@
 <template>
   <Example
       title="Default Buttons"
-      description="要创建纯按钮，请将 pure-button 类名称添加到任何">
+      description="There are primary button, default button, dashed button, text button and link button in antd.">
     <Button>你好</Button>
     <Button theme="button">你好</Button>
     <Button theme="link">你好</Button>

@@ -70,7 +70,7 @@
       align-items: center;
     }
     > aside {
-      background: #fff;
+      background: transparent;
 			flex-shrink: 0;
       z-index: 3;
       .show-drawer {
@@ -90,7 +90,6 @@
       color: rgba(0,0,0,.87);
       padding: 20px 50px;
       line-height: 1.5;
-      min-width: 700px;
       background-color: #fff;
 		}
 	}
@@ -99,7 +98,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding: 70px 0 16px;
+		padding: 70px 0 0;
 		height: 100%;
 		> h2 {
 			margin-bottom: 4px;

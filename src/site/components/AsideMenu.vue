@@ -1,5 +1,5 @@
 <template>
-  <lu-menu>
+  <lu-menu style="height: 100%">
     <lu-menu-item value="overview">组件列表</lu-menu-item>
     <lu-menu-group>
       <template v-slot:title>通用</template>
