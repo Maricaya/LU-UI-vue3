@@ -1,6 +1,5 @@
 <template>
   <lu-menu style="height: 100%">
-    <lu-menu-item value="overview">组件列表</lu-menu-item>
     <lu-menu-item value="intro" @click="onClick('intro')">介绍</lu-menu-item>
     <lu-menu-item value="install" @click="onClick('install')">安装</lu-menu-item>
     <lu-menu-item value="getStarted" @click="onClick('getStarted')">开始</lu-menu-item>
