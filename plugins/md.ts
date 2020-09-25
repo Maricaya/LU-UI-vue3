@@ -1,6 +1,5 @@
-// @ts-ignore
+// @ts-nocheck
 import path from 'path';
-// @ts-ignore
 import fs from 'fs';
 import marked from 'marked';
 

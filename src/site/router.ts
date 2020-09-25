@@ -9,10 +9,14 @@ import MenuDemo from './Demos/MenuDemo.vue';
 import DrawerDemo from './Demos/DrawerDemo.vue';
 import Markdown from '../site/components/Markdown.vue';
 import {h} from 'vue';
-
+import intro from './markdown/intro.md';
+import getStarted from './markdown/getStarted.md';
+import install from './markdown/install.md';
 // 内存型路由、hash 路由、history 路由
 const history = createWebHashHistory();
-const md = filename => h(Markdown, {path: `../markdown/${filename}.md`, key: filename})
+
+// 动态该为静态
+const md = (string) => h(Markdown, {content: string, key: string})
 
 export const router = createRouter({
   history,
@@ -21,9 +25,9 @@ export const router = createRouter({
     {path: '/home', component: Home},
     {path: '/doc', component: Doc, children: [
         {path: '', redirect: '/doc/intro'},
-        {path: 'intro', component: md('intro')},
-        {path: 'getStarted', component: md('getStarted')},
-        {path: 'install', component: md('install')},
+        {path: 'intro', component: md(intro)},
+        {path: 'getStarted', component: md(getStarted)},
+        {path: 'install', component: md(install)},
         {path: 'switch', component: SwitchDemo},
         {path: 'button', component: ButtonDemo},
         {path: 'dialog', component: DialogDemo},
