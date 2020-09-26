@@ -1,4 +1,4 @@
-# blue-ui(持续更新中) 使用 Vue3 + TypeScript
+# lu-ui(持续更新中) 使用 Vue3 + TypeScript
 # 一套好用的 PC 端 Vue3 组件 
 
 > 组件仅供学习交流，请勿在生产环境中使用
