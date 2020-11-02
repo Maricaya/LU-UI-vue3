@@ -18,15 +18,15 @@ export default {
         globals: {
             vue: 'Vue'
         },
-        name: 'LU-UI',
+        name: 'Lu',
         file: 'dist/lib/lu.js',
         format: 'umd',
-        plugins: [terser()]
+        // plugins: [terser()]
     }, {
-        name: 'LU-UI',
+        name: 'Lu',
         file: 'dist/lib/lu.esm.js',
         format: 'es',
-        plugins: [terser()]
+        // plugins: [terser()]
     }],
     plugins: [
         scss({ include: /\.scss$/, sass: dartSass }),

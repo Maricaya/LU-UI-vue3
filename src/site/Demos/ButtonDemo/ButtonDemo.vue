@@ -1,10 +1,16 @@
 <template>
 	<div class="header">
     <h2> Button </h2>
-    <p> A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic. </p>
+    <p>常用的操作按钮。</p>
   </div>
+
   <div class="content">
-    <button-example/>
+
+    <!--  basic -->
+    <Demo :component="ButtonExample">
+      使用<code>theme</code>、<code>round</code>属性来定义 Button 的样式。
+    </Demo>
+<!--    <button-example/>-->
     <h3 class="content-subhead">示例2</h3>
     <p>介绍</p>
     <div class="example">
@@ -58,16 +64,18 @@
 
 <script>
   import {Button} from "../../../lib";
+
   import ButtonExample from "./ButtonExample.vue";
+  import Demo from "../../components/Demo.vue"
 
   export default {
     name: "ButtonDemo",
-    components: {Button, ButtonExample},
+    components: {Button, Demo},
     setup () {
       const onClick = () => {
         console.log('onClick')
       }
-      return {onClick}
+      return {onClick, ButtonExample}
     }
   }
 </script>

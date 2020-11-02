@@ -3,8 +3,8 @@
     <div class="topnavAndBanner">
       <Top-nav/>
       <div class="banner">
-        <h1>Blue UI</h1>
-        <h2>一个厉害的 UI 框架</h2>
+        <h1 class="title">LU UI</h1>
+        <h2 class="description">一个基于 Vue3 的 UI 框架</h2>
         <p class="actions">
           <a href="https://github.com/Maricaya/blue-Elements">GitHub</a>
           <router-link to="/doc">开始</router-link>
@@ -53,12 +53,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$green: #02bcb0;
+$green: rgb(30, 64, 200);
 $border-radius: 4px;
-$color: #007974;
+$color: rgb(9, 24, 65);
 .topnavAndBanner {
-  background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
-  clip-path: ellipse(80% 60% at 50% 40%);
+  background: linear-gradient(145deg, rgb(2, 0, 36) 0%, rgb(234, 240, 249) 0%, rgb(221, 231, 246) 100%);
 }
 .features {
   margin: 64px auto;
@@ -115,6 +114,15 @@ $color: #007974;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  > .title {
+    font-size: 38px;
+    margin: 20px auto;
+    font-weight: bolder;
+  }
+  > .description {
+    font-size: 28px;
+    font-weight: 500;
+  }
   > .actions {
     padding: 8px 0;
     a {

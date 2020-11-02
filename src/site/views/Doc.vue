@@ -5,10 +5,7 @@
              @click="openDrawer"/>
 		<div class="content">
 			<aside v-if="asideVisible">
-        <lu-drawer ref="drawer" class="show-drawer">
-          <aside-menu/>
-        </lu-drawer>
-        <aside-menu class="show-normal-menu"/>
+        <aside-menu/>
       </aside>
 			<main>
         <router-view></router-view>
@@ -34,7 +31,7 @@
       const asideVisible = inject<Ref<boolean>>("asideVisible");
       const drawer = ref(null);
       const openDrawer = () => {
-        drawer.value.toggleDrawer()
+        // drawer.value.toggleDrawer()
       }
       return {asideVisible, drawer, openDrawer};
     }
@@ -45,7 +42,9 @@
 	.layout {
 		> .nav {
 			flex-shrink: 0;
-		}
+      border-bottom: 1px solid rgb(217, 217, 217);
+      background: #fff;
+    }
 		> .content {
 			flex-grow: 1;
 			padding-top: 80px;

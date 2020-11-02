@@ -19,7 +19,6 @@
     <lu-menu-group>
       <template v-slot:title>数据展示</template>
       <lu-menu-item value="tabs" @click="onClick('tabs')">Tabs 标签页</lu-menu-item>
-      <lu-menu-item value="drawer" @click="onClick('drawer')">Drawer 抽屉</lu-menu-item>
     </lu-menu-group>
   </lu-menu>
 </template>

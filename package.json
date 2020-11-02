@@ -1,11 +1,13 @@
 {
   "name": "lu-ui-vue3",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "files": ["dist/lib/*"],
   "main": "dist/lib/lu.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "rollup": "rollup -c",
+    "build:theme": ""
   },
   "dependencies": {
     "dwc-icons": "^0.0.9",

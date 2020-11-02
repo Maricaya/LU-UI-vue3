@@ -40,8 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 .top-nav {
-  background: #3f51b5;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0 1px 18px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   padding: 16px;
   position: fixed;
@@ -51,9 +49,11 @@ export default {
   z-index: 10;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(9, 24, 65);
   font-weight: 600;
-
+  .icon {
+    color: rgb(9, 24, 65);
+  }
   .logo {
     padding: 0 16px;
   }
