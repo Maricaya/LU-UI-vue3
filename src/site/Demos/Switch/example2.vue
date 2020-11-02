@@ -1,11 +1,15 @@
-<demo>支持 disabled</demo>
+<demo>
+title:基本用法
+$
+subTitle:支持 disabled
+</demo>
 <template>
   <Switch v-model:value="checked" disabled></Switch>
 </template>
 
 <script lang="ts">
-import {Switch} from "../../lib";
 import {ref} from "vue";
+import {Switch} from '../../../lib'
 
 export default {
   components: {Switch},
