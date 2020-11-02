@@ -1,15 +1,14 @@
 <template>
+  <h3 class="sub-title">{{ component.__sourceCodeTitle }}</h3>
+  <p>{{component.__sourceCodeSubTitle}}</p>
   <section class="demo">
-    <h2>{{ component.__sourceCodeTitle }}</h2>
-    <p>{{component.__sourceCodeSubTitle}}</p>
-
-    <div class="demo-component">
+    <div class="code-box-demo">
       <component :is="component" :key="component"/>
     </div>
     <div class="meta">
       <div class="description" v-if="$slots.default">
         <div class="description-slot">
-          <p><slot></slot></p>
+          <slot></slot>
         </div>
       </div>
       <div class="demo-code">
@@ -48,8 +47,9 @@ export default {
 $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
-  margin: 16px 0 32px;
-
+  .code-box-demo {
+    padding: 42px 24px 50px;
+  }
   > h2 {
     font-size: 20px;
     padding: 8px 16px;
@@ -71,15 +71,12 @@ $border-color: #d9d9d9;
     border-top: 1px solid #eaeefb;
     overflow: hidden;
     .description {
-      padding: 20px;
+      padding: 18px 24px 12px;
       box-sizing: border-box;
-      border: 1px solid #ebebeb;
-      border-radius: 3px;
       font-size: 14px;
       line-height: 22px;
       color: #666;
       word-break: break-word;
-      margin: 10px;
       background-color: #fff;
       .description-slot{
         code {
@@ -98,11 +95,11 @@ $border-color: #d9d9d9;
     }
   }
   &-code {
-    padding: 8px 16px;
+    padding:  16px 32px;
     border-top: 1px dashed $border-color;
 
     > pre {
-      line-height: 1.1;
+      line-height: 1.5;
       font-family: Consolas, 'Courier New', Courier, monospace;
       margin: 0;
     }

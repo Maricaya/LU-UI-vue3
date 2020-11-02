@@ -18,14 +18,12 @@
   import TopNav from "../components/TopNav.vue";
   import AsideMenu from "../components/AsideMenu.vue";
   import {inject, ref, Ref} from 'vue'
-  import {Drawer} from '../../lib'
 
   export default {
     name: "Doc",
     components: {
       TopNav,
-      AsideMenu,
-      "lu-drawer": Drawer
+      AsideMenu
     },
     setup() {
       const asideVisible = inject<Ref<boolean>>("asideVisible");
