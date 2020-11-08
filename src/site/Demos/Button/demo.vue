@@ -4,17 +4,17 @@
 
     <!-- basic -->
     <Demo :component="example1">
-      使用<code>theme</code>、<code>round</code>属性来定义 Button 的样式。
+      使用 <code>theme</code> 属性来定义 Button 的样式。
     </Demo>
 
     <!-- size -->
     <Demo :component="example2">
-      额外的尺寸：<code>medium</code>、<code>small</code>、<code>mini</code>，通过设置<code>size</code>属性来配置它们。
+      额外的尺寸：<code>big</code>、<code></code><code>small</code>，通过设置 <code>size</code> 属性来配置它们。
     </Demo>
 
     <!-- type -->
     <Demo :component="example3">
-      使用type、plain、round和circle属性来定义 Button 的样式。
+      使用 level 属性来定义 Button 的样式。
     </Demo>
 
     <!-- disabled  -->

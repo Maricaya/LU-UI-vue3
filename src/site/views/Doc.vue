@@ -63,7 +63,7 @@
       align-items: center;
     }
     > aside {
-      background: transparent;
+      background: #fff;
 			flex-shrink: 0;
       z-index: 3;
       .show-drawer {
@@ -91,7 +91,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding: 70px 0 0;
+		padding: 65px 0 0;
 		height: 100%;
 		> h2 {
 			margin-bottom: 4px;

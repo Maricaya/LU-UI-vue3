@@ -1,7 +1,7 @@
 <demo>
 title:基础用法
 $
-subTitle:There are primary button, default button, dashed button, text button and link button in antd.
+subTitle:这些是按钮组件的基本用法。
 </demo>
 
 <template>
